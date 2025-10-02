@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mobileapplication1;
+package tech.alicesworld.ModernConnector;
 
 import java.io.IOException;
 import javax.microedition.io.Connector;
