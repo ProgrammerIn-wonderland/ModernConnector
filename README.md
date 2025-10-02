@@ -4,6 +4,22 @@ Library like J2ME's Connector.open() but with TLS 1.2 automatically.
 ### Usage 
 HTTPS:
 ```java
+// Somewhere
+private static byte[] readAll(InputStream in, int max) throws IOException {
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    byte[] buf = new byte[512];
+    int total = 0;
+    while (true) {
+        int want = Math.min(buf.length, max - total);
+        if (want <= 0) break;
+        int n = in.read(buf, 0, want);
+        if (n == -1) break;
+        bos.write(buf, 0, n);
+        total += n;
+    }
+    return bos.toByteArray();
+}
+
 HttpConnection hc = (HttpConnection) ModernConnector.open("https://cloudflare.com/cdn-cgi/trace");
 hc.setRequestMethod(HttpConnection.GET);
 hc.setRequestProperty("Accept", "*/*");
