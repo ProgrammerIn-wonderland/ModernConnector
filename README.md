@@ -56,3 +56,6 @@ If you want to use ModernConnector for ports 80/443/8080, your app WILL need a c
 
 ### Certificate validation
 It simply does not exist. This library currently takes care of encryption but will not verify the remote server. It cannot be considered secure for that reason, but it can let you connect to secure services.
+
+### Building
+Use netbeans 8.2 with Mobility and the proper j2me sdk setup. If that sounds awful its because it is. I should fix this eventually.
