@@ -25,15 +25,15 @@ public class ModernSecureConnection implements SecureConnection {
     private DataInputStream inputStream;
     private DataOutputStream outputStream;
     private SocketConnection socket;
-    public ModernSecureConnection(String serverUrl, int port) throws IOException {            
-        String connectionUrl = "socket://" + serverUrl + ":" + port;
+    public ModernSecureConnection(String serverHost, int port) throws IOException {            
+        String connectionUrl = "socket://" + serverHost + ":" + port;
         socket = (SocketConnection) Connector.open(connectionUrl);
         InputStream plainInput = socket.openInputStream();
         OutputStream plainOutput = socket.openOutputStream();
 
         // Initialize BouncyCastle TLS protocol
         TlsClientProtocol tlsProtocol = new TlsClientProtocol(plainInput, plainOutput, new SecureRandom());
-        CustomTlsClient tlsClient = new CustomTlsClient();
+        CustomTlsClient tlsClient = new CustomTlsClient(serverHost);
         tlsProtocol.connect(tlsClient);
         // Wrap the plain input and output streams with TLS streams
         inputStream = new DataInputStream(tlsProtocol.getInputStream());

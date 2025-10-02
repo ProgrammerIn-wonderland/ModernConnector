@@ -17,6 +17,7 @@ import javax.microedition.io.SocketConnection;
 import org.bouncycastle.crypto.tls.TlsClientProtocol;
 
 public class WebSocketClient {
+
     private String serverUrl;
     private int port;
     private SocketConnection socket;
@@ -27,6 +28,7 @@ public class WebSocketClient {
         this.serverUrl = serverUrl;
         this.port = port;
     }
+
     public WebSocketClient() {
     }
 
@@ -53,6 +55,7 @@ public class WebSocketClient {
         }
         return false;
     }
+
     public boolean connectTLS() {
         try {
             // Create socket connection to the server
@@ -61,8 +64,8 @@ public class WebSocketClient {
             InputStream plainInput = socket.openInputStream();
             OutputStream plainOutput = socket.openOutputStream();
 
-            // Initialize BouncyCastle TLS protocol
-            TlsClientProtocol tlsProtocol = new TlsClientProtocol(plainInput, plainOutput, new SecureRandom());
+            // Initialize BouncyCastle TLS protocol           
+            TlsClientProtocol tlsProtocol = new TlsClientProtocol(plainInput, plainOutput, (SecureRandom) new SecureRandom());
             CustomTlsClient tlsClient = new CustomTlsClient();
             tlsProtocol.connect(tlsClient);
             // Wrap the plain input and output streams with TLS streams
@@ -84,6 +87,7 @@ public class WebSocketClient {
             return false;
         }
     }
+
     public boolean connectWithSocket(SocketConnection socket) throws IOException {
         inputStream = socket.openDataInputStream();
         outputStream = socket.openDataOutputStream();
@@ -103,13 +107,13 @@ public class WebSocketClient {
 
     private String generateHandshakeRequest() {
         String secWebSocketKey = generateSecWebSocketKey();
-        return "GET / HTTP/1.1\r\n" +
-               "Host: " + serverUrl + ":" + port + "\r\n" +
-               "Upgrade: websocket\r\n" +
-               "Connection: Upgrade\r\n" +
-               "Sec-WebSocket-Key: " + secWebSocketKey + "\r\n" +
-               "Sec-WebSocket-Version: 13\r\n" +
-               "\r\n";
+        return "GET / HTTP/1.1\r\n"
+                + "Host: " + serverUrl + ":" + port + "\r\n"
+                + "Upgrade: websocket\r\n"
+                + "Connection: Upgrade\r\n"
+                + "Sec-WebSocket-Key: " + secWebSocketKey + "\r\n"
+                + "Sec-WebSocket-Version: 13\r\n"
+                + "\r\n";
     }
 
     private String generateSecWebSocketKey() {
@@ -130,7 +134,7 @@ public class WebSocketClient {
             if (responseBuffer.size() > 4) {
                 // Check for the end of headers (CRLFCRLF)
                 String response = responseBuffer.toString();
-                System.out.println(response);
+
                 if (response.endsWith("\r\n\r\n")) {
                     break;
                 }
@@ -138,15 +142,18 @@ public class WebSocketClient {
         }
         return responseBuffer.toString();
     }
+
     public boolean unreadData() throws IOException {
         return inputStream.available() == 0;
     }
+
     public void sendMessage(String message) throws IOException {
         byte[] payload = message.getBytes();
         sendMessage(payload);
     }
+
     public void sendMessage(byte[] payload) throws IOException {
-        
+
         ByteArrayOutputStream frame = new ByteArrayOutputStream();
 
         // Add frame header
@@ -192,7 +199,7 @@ public class WebSocketClient {
         System.out.println("Opcode: " + opcode);
         if (opcode != 0x01 && opcode != 0x02) { // Check if it's a text frame or binary frame
 //            throw new IOException("Unsupported frame type");
-            return  new byte[0];
+            return new byte[0];
         }
 
         int secondByte = inputStream.read();
@@ -209,7 +216,7 @@ public class WebSocketClient {
 
         return payload;
     }
-    
+
     public String receiveMessageString() throws IOException {
         int firstByte = inputStream.read();
         if (firstByte == -1) {
@@ -220,7 +227,7 @@ public class WebSocketClient {
         if (opcode != 0x01) { // Check if it's a text frame
             return "";
 //            throw new IOException("Unsupported frame type");
-            
+
         }
 
         int secondByte = inputStream.read();
@@ -240,9 +247,15 @@ public class WebSocketClient {
 
     public void close() {
         try {
-            if (inputStream != null) inputStream.close();
-            if (outputStream != null) outputStream.close();
-            if (socket != null) socket.close();
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (outputStream != null) {
+                outputStream.close();
+            }
+            if (socket != null) {
+                socket.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

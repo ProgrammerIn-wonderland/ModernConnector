@@ -11,7 +11,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import javax.microedition.io.SecureConnection;
 import javax.microedition.io.SocketConnection;
 
 /**
@@ -87,8 +86,11 @@ public class WebSocketConnection implements SocketConnection {
     public void sendMessage(byte[] data) throws IOException {
         ws.sendMessage(data);
     }
-    public void recieveMessage() {
-        
+    public byte[] receiveMessageBinary() throws IOException {
+        return ws.receiveMessageBinary();
+    }
+    public String recieveMessageString() throws IOException {
+        return ws.receiveMessageString();
     }
     
 }
