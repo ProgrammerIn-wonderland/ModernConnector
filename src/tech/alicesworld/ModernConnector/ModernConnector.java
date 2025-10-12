@@ -15,7 +15,8 @@ import javax.microedition.io.SocketConnection;
  * @author NealShah
  */
 public class ModernConnector {
-
+    public static Object socketImplementation;
+    
     public static Object open(String connectionURL) throws IOException {
         String protocol = Utils.split(connectionURL, ':')[0];
         if (protocol.equals("ssl") || protocol.equals("tls")) {
@@ -24,7 +25,7 @@ public class ModernConnector {
             String host = endpointData[0];
             int port = 443;
             try {
-                Integer.parseInt(endpointData[1]);
+                port = Integer.parseInt(endpointData[1]);
             } catch (Exception e) {
                 // Nothing
             }
@@ -37,7 +38,7 @@ public class ModernConnector {
             String host = endpointData[0];
             int port = 80;
             try {
-                Integer.parseInt(endpointData[1]);
+                port = Integer.parseInt(endpointData[1]);
             } catch (Exception e) {
                 // Nothing
             }
@@ -53,7 +54,7 @@ public class ModernConnector {
             String host = endpointData[0];
             int port = 443;
             try {
-                Integer.parseInt(endpointData[1]);
+                port = Integer.parseInt(endpointData[1]);
             } catch (Exception e) {
                 // Nothing
             }
@@ -69,15 +70,37 @@ public class ModernConnector {
             String host = endpointData[0];
             int port = 443;
             try {
-                Integer.parseInt(endpointData[1]);
+                port = Integer.parseInt(endpointData[1]);
             } catch (Exception e) {
                 // Nothing
             }
+            System.out.println("Using port " + port + " There was no " + endpointData[1]);
             SecureConnection socket = (SecureConnection) ModernConnector.open("tls://" + host + ":" + port);
             return new ModernHTTPSConnection(socket, connectionURL);
+        }
+        
+        if (protocol.equals("socket") && ModernConnector.socketImplementation != null) {
+            String endpoint = Utils.split(connectionURL.substring(8), '/')[0];
+
+            String[] endpointData = Utils.split(endpoint, ':');
+            String host = endpointData[0];
+            int port = 443;
+            try {
+                port = Integer.parseInt(endpointData[1]);
+            } catch (Exception e) {
+                // Nothing
+            }
+            
+            return ((ModernConnector) ModernConnector.socketImplementation).openSocket(host, port);
         }
 
         return Connector.open(connectionURL);
     }
+
+    public Object openSocket(String host, int port) {
+        throw new UnsupportedOperationException("Only supported when new upstream is set");
+    }
+
+
 
 }

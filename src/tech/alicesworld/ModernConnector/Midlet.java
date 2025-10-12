@@ -43,7 +43,7 @@ public class Midlet extends MIDlet
 
     SocketConnection socket;
     // form
-    Form form = new Form("WebSocket Client");
+    Form form = new Form("HTTPS Client");
 
     // gauge
     Gauge gauge = new Gauge("Progress Bar", false, 20, 9);
@@ -62,7 +62,7 @@ public class Midlet extends MIDlet
     static final Command exitCommand
             = new Command("Exit", Command.STOP, 2);
     String currentMenu;
-    TextField wsurl = new TextField("Websocket URL (host:port)", "wss://gateway.discord.gg/", 50, 0);
+    TextField wsurl = new TextField("HTTPS URL (host:port)", "https://cloudflare.com:8443/cdn-cgi/trace", 50, 0);
 
     // constructor.
     public Midlet() {
@@ -131,6 +131,11 @@ public class Midlet extends MIDlet
      * Test the Form component.
      */
     public void testForm() {
+        form.addCommand(sendCommand);
+        form.addCommand(backCommand);
+        form.setCommandListener(this);
+        display.setCurrent(form);
+        currentMenu = "form";
 
         String reply = "";
         try {
@@ -138,18 +143,21 @@ public class Midlet extends MIDlet
 //            
 //            reply = ws.receiveMessageString();
             textfield.setLabel("hey");
-            HttpConnection hc = (HttpConnection) ModernConnector.open("https://cloudflare.com/cdn-cgi/trace");
+            HttpConnection hc = (HttpConnection) ModernConnector.open(wsurl.getString());
             hc.setRequestMethod(HttpConnection.GET);
             hc.setRequestProperty("Accept", "*/*");
-
+            textfield.setLabel("Did the accept thing");
             // 4) Get code (forces the send), then read body
             int code = hc.getResponseCode();
+            textfield.setLabel("Sending accept");
             if (code < 200 || code >= 300) {
 //                throw new IOException("HTTP " + code + " " + hc.getResponseMessage());
             }
 
             InputStream in = hc.openInputStream();
+            textfield.setLabel("Got input stream");
             String output = new String(readAll(in, Integer.MAX_VALUE));
+            textfield.setLabel("Done");
             System.out.println(output);
             textfield.setLabel(output);
         } catch (IOException e) {
@@ -177,11 +185,7 @@ public class Midlet extends MIDlet
 
 //        Thread thread = new Thread(myRunnable);
 //        thread.start();
-        form.addCommand(sendCommand);
-        form.addCommand(backCommand);
-        form.setCommandListener(this);
-        display.setCurrent(form);
-        currentMenu = "form";
+
     }
 
     /**

@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/CustomTlsClient.java</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/WebSocketConnection.java</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/ModernConnector.java</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/WebSocketClient.java</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/GuiTests.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/Midlet.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/CustomTlsClient.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/WebSocketConnection.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/Utils.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/ModernConnector.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/ModernSecureConnection.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/ModernHTTPSConnection.java</file>
             <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/Midlet.java</file>
-            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/mobileapplication1/InMemoryPipe.java</file>
+            <file>file:/C:/Users/NealShah/Documents/NetBeansProjects/j2mewebsocket/src/tech/alicesworld/ModernConnector/WebSocketClient.java</file>
         </group>
     </open-files>
 </project-private>

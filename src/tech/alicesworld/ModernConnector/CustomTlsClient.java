@@ -36,7 +36,7 @@ public class CustomTlsClient extends DefaultTlsClient {
     public Hashtable getClientExtensions() throws IOException {
         Hashtable ext = TlsExtensionsUtils.ensureExtensionsInitialised(super.getClientExtensions());
         Vector serverNames = new Vector();
-        serverNames.addElement(new ServerName(NameType.host_name, sniHost));
+        serverNames.addElement(new LegacyServerName(NameType.host_name, sniHost));
         TlsExtensionsUtils.addServerNameExtension(ext, new ServerNameList(serverNames));
         return ext;
     }
