@@ -10,6 +10,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 import org.bouncycastle.crypto.tls.Certificate;
 import org.bouncycastle.crypto.tls.CertificateRequest;
+import org.bouncycastle.crypto.tls.CipherSuite;
 import org.bouncycastle.crypto.tls.DefaultTlsClient;
 import org.bouncycastle.crypto.tls.NameType;
 import org.bouncycastle.crypto.tls.ServerName;
@@ -32,6 +33,13 @@ public class CustomTlsClient extends DefaultTlsClient {
     public CustomTlsClient() {
         this("cloudflare.com");
     }
+    
+//    // Nokia JVM fix-- Wont pull from above class for some reason?
+//    public int[] getCipherSuites() {
+//        System.out.println("Inlined Cipher");
+//        return new int[] { 49195, 49187, 49161, 49199, 49191, 49171, 162, 64, 50, 158, 103, 51, 156, 60, 47 };
+//    }
+    
     
     public Hashtable getClientExtensions() throws IOException {
         Hashtable ext = TlsExtensionsUtils.ensureExtensionsInitialised(super.getClientExtensions());

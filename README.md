@@ -75,3 +75,6 @@ It simply does not exist. This library currently takes care of encryption but wi
 
 ### Building
 Use netbeans 8.2 with Mobility and the proper j2me sdk setup. If that sounds awful its because it is. I should fix this eventually.
+
+### Source of the Magic Jar's
+THe magicalbouncycastle that works is directly from a binary distribution built by BouncyCastle themselves, though I forgot what exact download link it was. As for the bytecode modified version needed for nokia's due to a bug relating to virtualinvoke is provided by https://github.com/shinovon/

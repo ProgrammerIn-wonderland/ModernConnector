@@ -30,7 +30,15 @@ public class LegacyServerName extends org.bouncycastle.crypto.tls.ServerName {
         switch (nameType)
         {
         case NameType.host_name:
-            byte[] asciiEncoding = ((String)name).getBytes("US_ASCII"); // Real bouncy castle uses ASCII here which breaks some devices
+            
+            byte[] asciiEncoding;
+            try{
+                // Real bouncy castle uses ASCII here which breaks some devices
+                asciiEncoding = ((String)name).getBytes("US_ASCII");
+            } catch(Exception e) {
+                asciiEncoding = ((String)name).getBytes("ASCII");
+            }
+            
             if (asciiEncoding.length < 1)
             {
                 throw new TlsFatalAlert(AlertDescription.internal_error);

@@ -74,7 +74,6 @@ public class ModernConnector {
             } catch (Exception e) {
                 // Nothing
             }
-            System.out.println("Using port " + port + " There was no " + endpointData[1]);
             SecureConnection socket = (SecureConnection) ModernConnector.open("tls://" + host + ":" + port);
             return new ModernHTTPSConnection(socket, connectionURL);
         }
