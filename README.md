@@ -77,6 +77,6 @@ It simply does not exist. This library currently takes care of encryption but wi
 Use netbeans 8.2 with Mobility and the proper j2me sdk setup. If that sounds awful its because it is. I should fix this eventually.
 
 ### Source of the Magic Jar's
-THe magicalbouncycastlethatworks.jar is directly from a binary distribution built by BouncyCastle themselves, specifically lcrypto-j2me-164.zip obtainable from https://polydistortion.net/bc/download/lcrypto-j2me-164.zip. Inside that zip there is a folder called zips with a file called cldc_bccore_classes.zip. This is that file. No version of lcrypto-j2me built after version 164 seems to contain TLS. 
+THe magicalbouncycastlethatworks.jar is directly from a binary distribution built by BouncyCastle themselves, specifically lcrypto-j2me-160.zip. I'm not sure where to still get this file but its probably on archive.org. This is that file. No version of lcrypto-j2me built after version 164 seems to contain TLS. 
 
 As for the bytecode modified version needed for nokia's due to a bug relating to virtualinvoke is provided by https://github.com/shinovon/
