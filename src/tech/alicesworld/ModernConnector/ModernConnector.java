@@ -97,7 +97,7 @@ public class ModernConnector {
     }
 
     public Object openSocket(String host, int port) {
-        throw new UnsupportedOperationException("Only supported when new upstream is set");
+        throw new RuntimeException("Only supported when new upstream is set");
     }
 
 

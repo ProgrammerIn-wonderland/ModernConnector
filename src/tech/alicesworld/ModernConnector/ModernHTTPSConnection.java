@@ -154,7 +154,7 @@ public final class ModernHTTPSConnection implements HttpsConnection {
     private boolean hasRequestHeaderIgnoreCase(String name) {
         for (int i = 0; i < reqHeaderOrder.size(); i++) {
             String k = (String) reqHeaderOrder.elementAt(i);
-            if (k.equalsIgnoreCase(name)) {
+            if (k.toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
@@ -400,7 +400,7 @@ public final class ModernHTTPSConnection implements HttpsConnection {
         }
         for (int i = 0; i < respHeaderNames.size(); i++) {
             String n = (String) respHeaderNames.elementAt(i);
-            if (n.equalsIgnoreCase(name)) {
+            if (n.toLowerCase().equals(name.toLowerCase())) {
                 return (String) respHeaderValues.elementAt(i);
             }
         }
@@ -541,15 +541,15 @@ public final class ModernHTTPSConnection implements HttpsConnection {
     }
 
     public long getDate() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public long getExpiration() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public long getLastModified() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // ------------------------------------------------------------------------

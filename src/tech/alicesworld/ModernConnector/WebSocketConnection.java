@@ -65,19 +65,19 @@ public class WebSocketConnection implements SocketConnection {
     }
 
     public DataInputStream openDataInputStream() throws IOException {
-        throw new UnsupportedOperationException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public InputStream openInputStream() throws IOException {
-        throw new UnsupportedOperationException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public DataOutputStream openDataOutputStream() throws IOException {
-        throw new UnsupportedOperationException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public OutputStream openOutputStream() throws IOException {
-        throw new UnsupportedOperationException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("WebSocket's aren't really streams."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void sendMessage(String data) throws IOException {

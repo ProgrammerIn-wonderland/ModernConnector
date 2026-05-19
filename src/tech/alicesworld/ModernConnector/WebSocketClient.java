@@ -172,7 +172,7 @@ public class WebSocketClient {
         byte[] maskingKey = new byte[4];
         Random random = new Random();
         for (int i = 0; i < maskingKey.length; i++) {
-            maskingKey[i] = (byte) (random.nextInt(256)); // Generate random byte
+            maskingKey[i] = (byte) (random.nextInt() & 255); // Generate random byte
         }
         frame.write(maskingKey);
 

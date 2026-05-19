@@ -41,7 +41,7 @@ public class ModernSecureConnection implements SecureConnection {
     }
     
     public SecurityInfo getSecurityInfo() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new RuntimeException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getLocalPort() throws IOException {
