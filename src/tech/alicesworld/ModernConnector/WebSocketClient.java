@@ -236,7 +236,18 @@ public class WebSocketClient {
         if (payloadLength == 126) {
             payloadLength = (inputStream.read() << 8) | inputStream.read();
         } else if (payloadLength == 127) {
+            // payload length is 64-bit integer
+            // int is 32-bit and it's unlikely that we will need to go above that in j2me, so error out if we do
+            for (int i = 0; i < 4; i++) {
+                if (inputStream.read() != 0) {
             throw new IOException("Unsupported payload length");
+                }
+            }
+            int firstLenByte = inputStream.read();
+            if (firstLenByte > 127) throw new IOException("Unsupported payload length");
+
+            payloadLength = (firstLenByte << 24) | (inputStream.read() << 16) |
+                (inputStream.read() << 8) | inputStream.read();
         }
 
         byte[] payload = new byte[payloadLength];
